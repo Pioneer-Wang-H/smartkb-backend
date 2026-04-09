@@ -10,7 +10,6 @@ import com.smartkb.repository.es.ArticleSearchRepository;
 import com.smartkb.repository.mongo.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest as SpringPageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -109,7 +108,7 @@ public class ArticleService {
      */
     public PageResult<ArticleResponse> list(PageRequest pageRequest) {
         pageRequest.validate();
-        SpringPageRequest springPageRequest = SpringPageRequest.of(
+        org.springframework.data.domain.PageRequest springPageRequest = org.springframework.data.domain.PageRequest.of(
                 pageRequest.getPage() - 1,
                 pageRequest.getSize(),
                 Sort.by(Sort.Direction.DESC, "createdAt")
